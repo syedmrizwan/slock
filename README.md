@@ -1,6 +1,6 @@
 # Slock Programming task
 
-This project will visualize the ENS contract events of the past (e.g. the last 1 or 2 days) focussing in particular on the bid revelation event. Live demo can be viewed [here] (https://slockprogrammingtask.netlify.com/)
+This project will visualize the ENS contract events of the past (e.g. the last 1 or 2 days) focussing in particular on the bid revelation event. Live demo can be viewed [here](https://slockprogrammingtask.netlify.com/)
 
 ## Getting Started
 
