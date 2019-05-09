@@ -1,13 +1,15 @@
-import Web3 from 'web3';
+import Web3 from "web3";
 
 const contractAddress = "0x6090A6e47849629b7245Dfa1Ca21D94cd15878Ef";
-const contractTopics = ['0xb556ff269c1b6714f432c36431e2041d28436a73b6c3f19c021827bbdc6bfc29'];
-const mainnetURL = 'https://mainnet.infura.io/';
+const contractTopics = [
+  "0x7b6c4b278d165a6b33958f8ea5dfb00c8c9d4d0acf1985bef5d10786898bc3e7"
+];
+const mainnetURL = "https://mainnet.infura.io/";
 
 /**
-* This function returns latest block number
-* @return {Integer}   block number
-*/
+ * This function returns latest block number
+ * @return {Integer}   block number
+ */
 async function getLatestBlockNumber() {
   const web3 = new Web3(mainnetURL);
   return await web3.eth.getBlockNumber();
@@ -15,8 +17,8 @@ async function getLatestBlockNumber() {
 
 /**
  * This function returns ENS Contract Event
- * @param {Integer} fromBlockNumber 
- * @param {Integer} toBlockNumber 
+ * @param {Integer} fromBlockNumber
+ * @param {Integer} toBlockNumber
  * @return {Object}   Contract Events
  */
 async function getENSContractEvents(fromBlockNumber, toBlockNumber) {
@@ -26,7 +28,7 @@ async function getENSContractEvents(fromBlockNumber, toBlockNumber) {
       fromBlock: fromBlockNumber,
       toBlock: toBlockNumber,
       address: contractAddress,
-      topics: contractTopics,
+      topics: contractTopics
     });
     return events;
   } catch (err) {
@@ -35,12 +37,16 @@ async function getENSContractEvents(fromBlockNumber, toBlockNumber) {
 }
 
 /**
- * Prints Ens Contract - BID REVELATION event in the last 1000 blocks
+ * Prints Ens Contract - BID REVELATION event in the last 3000 blocks
  */
 export default async function getEventsForPast2Days() {
   let latestBlockNumber = await getLatestBlockNumber();
-  let twoDaysOldBlockNumber = latestBlockNumber - 1000; //assuming 500 blocks are mined per day
-  let ensContractEvents = await getENSContractEvents(twoDaysOldBlockNumber, latestBlockNumber);
+  let twoDaysOldBlockNumber = latestBlockNumber - 3000;
+  let ensContractEvents = await getENSContractEvents(
+    twoDaysOldBlockNumber,
+    latestBlockNumber
+  );
+  console.log(ensContractEvents);
   return ensContractEvents;
 }
 
