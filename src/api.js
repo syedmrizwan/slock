@@ -41,7 +41,7 @@ async function getENSContractEvents(fromBlockNumber, toBlockNumber) {
  */
 export default async function getEventsForPast2Days() {
   let latestBlockNumber = await getLatestBlockNumber();
-  let twoDaysOldBlockNumber = latestBlockNumber - 3000;
+  let twoDaysOldBlockNumber = latestBlockNumber - 5000;
   let ensContractEvents = await getENSContractEvents(
     twoDaysOldBlockNumber,
     latestBlockNumber
